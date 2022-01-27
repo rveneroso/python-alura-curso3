@@ -74,6 +74,17 @@ class Conta:
     @limite.setter
     def limite(self, valor):
         self.__limite = valor
+
+    #
+    # A anotação para definir um método como estático é @staticmethod
+    #
+    @staticmethod
+    def codigo_banco():
+        return "001"
+
+    @staticmethod
+    def codigos_bancos():
+        return {"BB": "001", "Caixa": "104", "Bradesco": "237"}
 #
 # Classe do desafio opcional
 #
