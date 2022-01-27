@@ -3,10 +3,20 @@ class Conta:
 
     def __init__(self, numero, titular, saldo, limite):
         # self é a referência que sabe onde encontrar o objeto em memória.
-        self.numero = numero
-        self.titular = titular
-        self.saldo = saldo
-        self.limite = limite
+        #
+        # Ao se preceder o nome de um atributo com dois underlines (__) o Python torna o atributo
+        # pseudo privado. É pseudo porque o que o Python faz é mudar a forma de acessar o atributo.
+        # Por exemplo: sem o __ o atributo saldo pode ser acesso através de conta.saldo ao passo que, com
+        # o __ o acesso passa ser feito através de conta.__Conta__saldo.
+        # O grande problema é que ainda assim o valor de um atributo poderia ser modificado diretamente.
+        # Basicamente a forma na mudança de acesso ao atributo serve apenas para um alerta do desenvolvedor
+        # pois, com a sintaxe conta.__Conta__saldo fica claro que o atributo não deveria ser acessado
+        # diretamente.
+        #
+        self.__numero = numero
+        self.__titular = titular
+        self.__saldo = saldo
+        self.__limite = limite
 
     # A assinatura dos métodos obrigatoriamente terão como primeiro argumento self que nada mais é do que o
     # this do Python. Entretanto, esse parâmetro não é passado explicitamente quando o método é chamado.
@@ -18,13 +28,13 @@ class Conta:
     # qual o método está sendo chamado que, no exemplo acima, é 'conta'.
     #
     def deposita(self, valor):
-        self.saldo += valor
+        self.__saldo += valor
 
     def saca(self, valor):
-        self.saldo -= valor
+        self.__saldo -= valor
 
     def extrato(self):
-        print("O saldo da conta do titulo {} é {}".format(self.titular, self.saldo))
+        print("O saldo da conta do titulo {} é {}".format(self.__titular, self.__saldo))
 
 #
 # Classe do desafio opcional
