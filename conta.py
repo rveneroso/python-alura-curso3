@@ -49,10 +49,15 @@ class Conta:
     def get_saldo(self):
         return self.__saldo
 
-    def get_limite(self):
+    #
+    # Vide observações na classe Cliente para compreender o papel das anotações @property e @atributo.setter
+    #
+    @property
+    def limite(self):
         return self.__limite
 
-    def set_limite(self, valor):
+    @limite.setter
+    def limite(self, valor):
         self.__limite = valor
 #
 # Classe do desafio opcional
