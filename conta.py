@@ -31,7 +31,10 @@ class Conta:
         self.__saldo += valor
 
     def saca(self, valor):
-        self.__saldo -= valor
+        if(self.saque_permitido(valor)):
+            self.__saldo -= valor
+        else:
+            print("O valor {} ultrapassa seu limite disponível para saque".format(valor))
 
     def extrato(self):
         print("O saldo da conta do titulo {} é {}".format(self.__titular, self.__saldo))
@@ -49,6 +52,17 @@ class Conta:
     @property
     def saldo(self):
         return self.__saldo
+
+    #
+    # Assim como ocorre com atributos, ao se preceder o nome de um método dois sinais de underline (__)
+    # o Python passa a definir o nome do método como sendo _Classe__nome_do_metodo. No exemplo abaixo
+    # o método passa a ser referenciado por _Conta__saque_permitido. E também como acontece com atributos,
+    # isso não impede que o método seja acessado externamente à classe. A nova referência ao método serve
+    # apenas como um alerta para o desenvolvedor, indicando a ele que trata-se de um método privado.
+    #
+    def __saque_permitido(self, valor_a_sacar):
+        saldo_disponivel_para_saque = self.saldo + self.limite
+        return valor_a_sacar <= saldo_disponivel_para_saque
 
     #
     # Vide observações na classe Cliente para compreender o papel das anotações @property e @atributo.setter
