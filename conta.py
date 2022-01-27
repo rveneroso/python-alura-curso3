@@ -36,6 +36,10 @@ class Conta:
     def extrato(self):
         print("O saldo da conta do titulo {} é {}".format(self.__titular, self.__saldo))
 
+    def transfere(self, valor, destino):
+        self.saca(valor)
+        destino.deposita(valor)
+
 #
 # Classe do desafio opcional
 #
